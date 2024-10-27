@@ -5,6 +5,7 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LaunchBrowser>false</LaunchBrowser>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />

@@ -10,16 +10,22 @@ namespace GameOfDronesAPI.Controllers
     {
         private readonly GameService _gameService;
         private readonly GameDbContext _context;
+        private readonly ILogger<GameController> _logger;
 
-        public GameController(GameService gameService, GameDbContext context)
+        public GameController(GameService gameService, GameDbContext context, ILogger<GameController> logger)
         {
             _gameService = gameService;
+            _logger = logger;
             _context = context;
+
         }
 
         [HttpPost("start")]
         public ActionResult<Game> StartGame([FromBody] GameRequest request)
         {
+            _logger.LogInformation("Recebendo requisição para iniciar o jogo.");
+
+            Console.WriteLine($"Iniciando jogo: {request.Player1.Name} vs {request.Player2.Name}"); 
             var game = _gameService.StartGame(request.Player1, request.Player2);
             return CreatedAtAction(nameof(GetGame), new { id = game.Id }, game);
         }

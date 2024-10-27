@@ -1,2 +1,28 @@
-<h1>Game Page</h1>
-<p>Let's Play!</p>
+<div ngIf="!gameStarted">
+    <h2>Iniciar Jogo</h2>
+    <input type="text" placeholder="Jogador 1" #player1>
+    <input type="text" placeholder="Jogador 2" #player2>
+    <button (click)="startGame(player1.value, player2.value)">Iniciar Jogo</button>
+  </div>
+  
+  <div ngIf="gameStarted">
+    <h2>Jogo em andamento!</h2>
+    
+    <label for="player1Move">Movimento Jogador 1:</label>
+    <select #player1Move id="player1Move">
+      <option value="Rock">Rock</option>
+      <option value="Paper">Paper</option>
+      <option value="Scissors">Scissors</option>
+    </select>
+    
+    <label for="player2Move">Movimento Jogador 2:</label>
+    <select #player2Move id="player2Move">
+      <option value="Rock">Rock</option>
+      <option value="Paper">Paper</option>
+      <option value="Scissors">Scissors</option>
+    </select>
+    
+    <button (click)="playRound(player1Move.value, player2Move.value)">Jogar Rodada</button>
+    <button (click)="endGame()">Finalizar Jogo</button>
+  </div>
+  

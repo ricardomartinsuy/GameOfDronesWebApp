@@ -1,7 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './app-routing.module'; // Importa as rotas do módulo de roteamento
+import { routes } from './app-routing.module';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)] // Fornece o roteador usando as rotas importadas
+  providers: [provideRouter(routes)],
 };

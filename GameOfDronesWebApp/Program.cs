@@ -1,6 +1,5 @@
 ﻿using GameOfDronesWebApp.Models;
 using GameOfDronesWebApp.Services;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +11,16 @@ builder.Services.AddDbContext<GameDbContext>(options =>
 
 builder.Services.AddScoped<GameService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()   
+                   .AllowAnyMethod()   
+                   .AllowAnyHeader();  
+        });
+});
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -23,19 +32,15 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseCors("AllowAll");
+
 app.UseAuthorization();
 
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "GameOfDronesFront";
-
-    if (app.Environment.IsDevelopment())
-    {
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200"); 
-    }
-});
+app.MapControllers(); 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Game}/{action=Start}/{id?}");
 
 app.Run();
+
