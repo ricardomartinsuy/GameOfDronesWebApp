@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GameOfDronesAPI.Services;
+using GameOfDronesWebApp.Services;
 using GameOfDronesWebApp.Models;
 
 namespace GameOfDronesAPI.Controllers

@@ -4,6 +4,7 @@ using GameOfDronesWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameOfDronesWebApp.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    partial class GameDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241027132838_ChangesOfTheGameStructure")]
+    partial class ChangesOfTheGameStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,9 +118,6 @@ namespace GameOfDronesWebApp.Migrations
 
                     b.Property<string>("Winner")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("WinnerId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
