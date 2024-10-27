@@ -1,5 +1,6 @@
 ﻿using GameOfDronesWebApp.Models;
 using GameOfDronesWebApp.Services;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameOfDronesWebApp;
@@ -34,6 +35,15 @@ public class Program
         app.UseRouting();
 
         app.UseAuthorization();
+
+        app.MapControllers(); 
+
+        app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = "ClientApp";
+
+            spa.UseAngularCliServer(npmScript: "start");
+        });
 
         app.MapControllerRoute(
             name: "default",
