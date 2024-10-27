@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { GameComponent } from './components/game/game.component';
+import { appConfig } from './app.config'; // Importando a configuração do aplicativo
 
 @NgModule({
   declarations: [
@@ -12,10 +12,14 @@ import { GameComponent } from './components/game/game.component';
     GameComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    // Aplicar a configuração
+    Object.assign(this, appConfig);
+  }
+}
