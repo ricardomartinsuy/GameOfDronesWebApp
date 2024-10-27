@@ -1,4 +1,5 @@
 ﻿using GameOfDronesWebApp.Models;
+using GameOfDronesWebApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameOfDronesWebApp;
@@ -15,6 +16,7 @@ public class Program
         builder.Services.AddDbContext<GameDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("GameOfDronesDb")));
 
+        builder.Services.AddScoped<GameService>();
 
         var app = builder.Build();
 
