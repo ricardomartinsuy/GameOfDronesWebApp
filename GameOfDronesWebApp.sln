@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfDronesWebApp", "GameOfDronesWebApp\GameOfDronesWebApp.csproj", "{1FB29E53-87E7-4891-A6C7-A3DC2C6CF646}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FB29E53-87E7-4891-A6C7-A3DC2C6CF646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB29E53-87E7-4891-A6C7-A3DC2C6CF646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB29E53-87E7-4891-A6C7-A3DC2C6CF646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB29E53-87E7-4891-A6C7-A3DC2C6CF646}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {622B76E1-8A9A-4949-A948-DF1C36BB4882}
+	EndGlobalSection
+EndGlobal
