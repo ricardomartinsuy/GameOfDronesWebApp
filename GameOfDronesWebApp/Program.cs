@@ -1,43 +1,46 @@
 ﻿using GameOfDronesWebApp.Models;
+using GameOfDronesWebApp.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace GameOfDronesWebApp;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<GameDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GameOfDronesDb")));
+
+builder.Services.AddScoped<GameService>();
+
+builder.Services.AddCors(options =>
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        builder.Services.AddControllersWithViews();
-
-        builder.Services.AddDbContext<GameDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("GameOfDronesDb")));
-
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (!app.Environment.IsDevelopment())
+    options.AddPolicy("AllowAll",
+        builder =>
         {
-            app.UseExceptionHandler("/Home/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-        }
+            builder.AllowAnyOrigin()   
+                   .AllowAnyMethod()   
+                   .AllowAnyHeader();  
+        });
+});
+var app = builder.Build();
 
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-
-        app.UseRouting();
-
-        app.UseAuthorization();
-
-        app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
-
-        app.Run();
-    }
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors("AllowAll");
+
+app.UseAuthorization();
+
+app.MapControllers(); 
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Game}/{action=Start}/{id?}");
+
+app.Run();
 
