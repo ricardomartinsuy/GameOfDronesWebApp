@@ -2,10 +2,17 @@
 
 Welcome to the Game Of Drones project! This project is a web application designed for managing drone operations. It is composed of three main parts: **API**: Located in the `GameOfDronesWebApp` folder. **Tests**: Located in the `GameOfDrones.Tests` folder. **Frontend**: An Angular application located in the `GameOfDronesFront` folder.
 
+## Features
+
+- Start a new game between two players.
+- Play rounds within an ongoing game.
+- Retrieve details for specific games or individual rounds.
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Running the API](#running-the-api)
+- [Endpoints](#api-endpoints)
 - [Running the Tests](#running-the-tests)
 - [Running the Angular Frontend](#running-the-angular-frontend)
 - [Conclusion](#conclusion)
@@ -44,6 +51,54 @@ To run the API located in the `GameOfDronesWebApp` folder, follow these steps:
    ```
 
    The API will start running on `http://localhost:5000` (or another port specified in your configuration).
+
+# API Endpoints
+
+## Game Management
+* **Start a New Game**
+  * **Endpoint:** `/api/game/start`
+  * **Method:** POST
+  * **Request Body:**
+    ```json
+    {
+      "player1": { "name": "Player1" },
+      "player2": { "name": "Player2" }
+    }
+    ```
+  * **Response:** 201 Created with game details.
+
+## Game Play
+* **Play a Round**
+  * **Endpoint:** `/api/game/play/{gameId}`
+  * **Method:** POST
+  * **Parameters:**
+    * `gameId` (int): The unique game ID.
+  * **Request Body:**
+    ```json
+    {
+      "player1Move": "Rock",
+      "player2Move": "Paper"
+    }
+    ```
+  * **Response:** 201 Created with round result.
+
+## Game Information
+* **Get Game Details**
+  * **Endpoint:** `/api/game/{id}`
+  * **Method:** GET
+  * **Parameters:**
+    * `id` (int): The game ID.
+  * **Response:**
+    * 200 OK with game details
+    * 404 Not Found if the game doesn't exist.
+* **Get Round Details**
+  * **Endpoint:** `/api/game/round/{id}`
+  * **Method:** GET
+  * **Parameters:**
+    * `id` (int): The round ID.
+  * **Response:**
+    * 200 OK with round details
+    * 404 Not Found if the round doesn't exist.
 
 ## Running the Tests
 
