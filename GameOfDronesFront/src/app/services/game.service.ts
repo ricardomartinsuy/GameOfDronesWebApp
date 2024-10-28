@@ -7,7 +7,8 @@ import { GameStartRequest } from '../models/game-start-request.model';
   providedIn: 'root',
 })
 export class GameService {
-  private apiUrl = 'http://localhost:5000/api/game'; 
+  private apiUrl = 'https://gameofdrones-d9h6c8ducmbbhrec.canadacentral-01.azurewebsites.net/api/game'; 
+
 
   constructor(private http: HttpClient) {}
 
